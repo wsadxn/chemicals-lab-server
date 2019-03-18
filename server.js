@@ -38,6 +38,7 @@ const instrument = require('./routes/instrument');
 const purchase = require('./routes/purchase');
 const order = require('./routes/order');
 const notice = require('./routes/notice');
+const inform = require('./routes/inform');
 
 
 
@@ -47,3 +48,4 @@ server.use('/api/instrument', instrument);
 server.use('/api/purchase', purchase);
 server.use('/api/order', order);
 server.use('/api/notice', notice);
+server.use('/api/inform', inform);

@@ -28,10 +28,15 @@ const notice = {
     deleteById: 'delete from notice where id=?',
 }
 
+const inform = {
+    deleteById: 'delete from inform where id=?',
+}
+
 module.exports = {
     user,
     chemicals,
     instrument,
     purchase,
     notice,
+    inform,
 };

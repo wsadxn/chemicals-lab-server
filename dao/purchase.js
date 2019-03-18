@@ -117,7 +117,7 @@ module.exports = {
           break;
         }
         case "revoke": {
-          info.state = -1;
+          info.state = -2;
           notice.type = 6;
           notice.content = info.applicantId;
           break;

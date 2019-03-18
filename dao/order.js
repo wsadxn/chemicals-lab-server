@@ -20,7 +20,7 @@ module.exports = {
     }
     const queryParams = Object.entries(params);
 
-    if (queryParams.length > 2) {
+    if (queryParams.length > 0) {
       sqlStr += ` where`;
       queryParams.forEach(function(arr, index) {
         if (arr[0] === "orderDate") {
@@ -63,7 +63,7 @@ module.exports = {
     }
     const queryParams = Object.entries(params);
 
-    if (queryParams.length > 2) {
+    if (queryParams.length > 0) {
       sqlStr += ` where`;
       queryParams.forEach(function(arr, index) {
         if (arr[0] === "orderDate") {
