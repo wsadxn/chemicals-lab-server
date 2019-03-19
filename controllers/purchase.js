@@ -118,5 +118,5 @@ module.exports = {
           msg: "更新采购信息失败" + JSON.stringify(e)
         });
       });
-  }
+  },
 };

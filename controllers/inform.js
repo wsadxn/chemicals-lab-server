@@ -1,4 +1,6 @@
 const Inform = require("../dao/inform");
+const Purchase = require("../dao/purchase");
+const Order = require("../dao/order");
 
 module.exports = {
   // 分页查询
@@ -105,4 +107,50 @@ module.exports = {
         });
     }
   },
+  getMonthNum: function(req, res, next) {
+    const arr = [];
+    const time = new Date();
+    const currentMonth = time.getMonth() + 1;
+    const year = time.getFullYear();
+    for (let i = 0; i < 6; i++) {
+      const month =
+        currentMonth - i > 0
+          ? year +
+            "-" +
+            (currentMonth - i > 9 ? currentMonth - i : "0" + (currentMonth - i))
+          : year -
+            1 +
+            "-" +
+            (currentMonth - i + 12 > 9
+              ? currentMonth - i + 12
+              : "0" + (currentMonth - i + 12));
+      arr.unshift(month);
+    }
+    Promise.all([
+      ...arr.map(value => {
+        return Purchase.getMonthNum(0, value + "%").then(
+          data => data[0]["num"] || 0
+        );
+      }),
+      ...arr.map(value => {
+        return Purchase.getMonthNum(1, value + "%").then(
+          data => data[0]["num"] || 0
+        );
+      }),
+      ...arr.map(value => {
+        return Order.getMonthNum(value + "%").then(data => data[0]["num"] || 0);
+      })
+    ]).then(data => {
+      res.json({
+        code: 1,
+        data: {
+          month: arr,
+          chemicals: data.slice(0, 6),
+          instrument: data.slice(6, 12),
+          order: data.slice(12)
+        },
+        msg: "success"
+      });
+    });
+  }
 };

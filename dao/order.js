@@ -1,4 +1,5 @@
 const _ = require("./query");
+const $sqlQuery = require("./sqlCRUD").order;
 const getUuid = require("../libs/utils").getUuid;
 const getCurrentTime = require("../libs/utils").getCurrentTime;
 
@@ -176,5 +177,8 @@ module.exports = {
     }' and orderTime like ${orderTime} and state!=3 && state!=4 && state!=5`;
     console.log(sqlStr);
     return _.query(sqlStr);
-  }
+  },
+  getMonthNum(time){
+    return _.query($sqlQuery.getMonthNum, time);
+  },
 };

@@ -138,5 +138,8 @@ module.exports = {
         notice
       };
     });
-  }
+  },
+  getMonthNum(type, time){
+    return _.query($sqlQuery.getMonthNum, [type, time]);
+  },
 };

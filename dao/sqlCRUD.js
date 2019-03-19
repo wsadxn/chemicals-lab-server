@@ -21,6 +21,11 @@ const instrument = {
 
 const purchase = {
     getExistCount: 'select count(*) from purchase where type=? and itemId=? and state!=-1 && state!=2',
+    getMonthNum:'select sum(itemNum) as num from purchase where type=? and state=2 and updateTime like ?'
+}
+
+const order = {
+    getMonthNum:'select count(*) as num from orderinfo where state=3 and updateTime like ?'
 }
 
 const notice = {
@@ -37,6 +42,7 @@ module.exports = {
     chemicals,
     instrument,
     purchase,
+    order,
     notice,
     inform,
 };

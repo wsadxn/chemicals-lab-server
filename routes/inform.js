@@ -15,4 +15,8 @@ router.post('/update', function(req, res, next){
     Inform.update(req, res, next);
 });
 
+router.get('/getMonthNum', function(req, res,next){
+    Inform.getMonthNum(req, res,next);
+});
+
 module.exports = router;
