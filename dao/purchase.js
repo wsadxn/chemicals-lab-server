@@ -78,7 +78,7 @@ module.exports = {
       return {
         data,
         notice: {
-          targetId: info.id,
+          targetId: info.type + "," + info.id,
           content: info.applicantId,
           type: 5
         }
@@ -101,14 +101,14 @@ module.exports = {
           info.state = 2;
           notice.acceptId = info.applicantId;
           notice.type = 8;
-          notice.targetId = info.id;
+          notice.targetId = info.type + "," + info.id;
           break;
         }
         case "adopt": {
           info.adoptTime = time;
           notice.acceptId = info.applicantId;
           notice.type = 7;
-          notice.targetId = info.id;
+          notice.targetId = info.type + "," + info.id;
           notice.content = info.state;
           break;
         }
@@ -139,7 +139,7 @@ module.exports = {
       };
     });
   },
-  getMonthNum(type, time){
+  getMonthNum(type, time) {
     return _.query($sqlQuery.getMonthNum, [type, time]);
-  },
+  }
 };
